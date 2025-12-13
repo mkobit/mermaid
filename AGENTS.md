@@ -5,7 +5,8 @@ We are working on a set of tasks to implement links for the gitGraph diagram mod
 ---
 ## Before You Start
 
-CONTRIBUTING.md should be considered the general truth to building and testing. It has a lot of content so be prudent in how you read it so you don't overwhelm the context window.
+CONTRIBUTING.md should be considered the general truth to building and testing.
+It has a lot of content so be prudent in how you read it so you don't overwhelm the context window.
 ### Commands
 | Command | Purpose |
 |---------|---------|
@@ -26,7 +27,7 @@ CONTRIBUTING.md should be considered the general truth to building and testing. 
 ```
 ### Reference Implementation
 
-These should be considered a solid reference for implementing leaks since they are already used for another graph type.
+These should be considered a solid reference for implementing links since they are already used for another graph type.
 ```packages/mermaid/src/diagrams/flowchart/
 ├── flowDb.ts               # REFERENCE: setLink, setTooltip functions
 ├── flowRenderer-v3-unified.ts  # REFERENCE: click binding
@@ -81,21 +82,8 @@ Variations:
 - `click <id> "<url>" _blank`
 - `click <id> "<url>" "<tooltip>" _blank`
 ---
-## Task Files
-Complete in order:
-| File | Description | Status |
-|------|-------------|--------|
-| [TASK-01-ast-link-storage.md](./TASK-01-ast-link-storage.md) | Add setLink/getLink to AST | ⬜ |
-| [TASK-02-parser-click-statement.md](./TASK-02-parser-click-statement.md) | Add click statement to parser | ⬜ |
-| [TASK-03-render-clickable-commits.md](./TASK-03-render-clickable-commits.md) | Make commits clickable | ⬜ |
-| [TASK-04-branch-links.md](./TASK-04-branch-links.md) | Make branches clickable | ⬜ |
-| [TASK-05-tag-links.md](./TASK-05-tag-links.md) | Make tags clickable | ⬜ |
-| [TASK-06-documentation.md](./TASK-06-documentation.md) | Document the feature | ⬜ |
-| [TASK-07-integration-tests.md](./TASK-07-integration-tests.md) | Comprehensive tests | ⬜ |
-See [CHECKLIST.md](./CHECKLIST.md) for detailed progress tracking.
----
 ## Reference: Flowchart Link Implementation
-### flowDb.ts - Link Storage
+### [flowDb.ts](packages/mermaid/src/diagrams/flowchart/flowDb.ts) - Link Storage
 ```typescript
 export const setLink = (ids: string[], linkStr: string, target: string) => {
   ids.forEach((id) => {
@@ -107,7 +95,7 @@ export const setLink = (ids: string[], linkStr: string, target: string) => {
   setClass(ids, 'clickable');
 };
 ```
-### flow.jison - Parser Grammar
+### [flow.jison](packages/mermaid/src/diagrams/flowchart/parser/flow.jison) - Parser Grammar
 ```jison
 "click"                                   return 'CLICK';
 \_blank                                   return 'LINK_TARGET';
