@@ -24,10 +24,10 @@ describe('gitGraphAst', () => {
     });
 
     it('should overwrite existing link', () => {
-        db.setLink('commit1', 'https://example.com');
-        db.setLink('commit1', 'https://updated.com');
-        const link = db.getLink('commit1');
-        expect(link?.link).toBe('https://updated.com/');
+      db.setLink('commit1', 'https://example.com');
+      db.setLink('commit1', 'https://updated.com');
+      const link = db.getLink('commit1');
+      expect(link?.link).toBe('https://updated.com/');
     });
 
     it('should get all links', () => {
