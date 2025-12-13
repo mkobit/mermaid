@@ -498,25 +498,36 @@ export const getHead = function () {
   return state.records.head;
 };
 
-export const setLink = function (id: string, link: string, tooltip?: string, target?: string) {
+export const setLink = function (
+  id: string,
+  link: string,
+  tooltip?: string,
+  target?: string
+): void {
   const config = getConfig();
   const sanitizedLink = formatUrl(link, config);
   if (!sanitizedLink) {
     return;
   }
+
+  let validTarget: GitGraphLink['target'] = '_self';
+  if (target && ['_self', '_blank', '_parent', '_top'].includes(target)) {
+    validTarget = target as GitGraphLink['target'];
+  }
+
   state.records.links.set(id, {
     id,
     link: sanitizedLink,
     tooltip: tooltip ? common.sanitizeText(tooltip, config) : undefined,
-    target: (target as GitGraphLink['target']) || '_self',
+    target: validTarget,
   });
 };
 
-export const getLinks = function () {
+export const getLinks = function (): Map<string, GitGraphLink> {
   return new Map(state.records.links);
 };
 
-export const getLink = function (id: string) {
+export const getLink = function (id: string): GitGraphLink | undefined {
   return state.records.links.get(id);
 };
 
