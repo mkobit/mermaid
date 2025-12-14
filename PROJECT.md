@@ -25,7 +25,7 @@ gitGraph
 
 ## Phase 1: Foundation
 
-- [ ] **Task 1.1** - Add GitGraphLink type definition
+- [x] **Task 1.1** - Add GitGraphLink type definition
 - [ ] **Task 1.2** - Add link state management (setLink, getLink, getLinks, clear)
 
 ## Phase 2: Parser
