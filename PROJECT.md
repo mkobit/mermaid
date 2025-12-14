@@ -36,9 +36,9 @@ gitGraph
 
 ## Phase 3: Renderer
 
-- [ ] **Task 3.1** - Add data-commit-id attribute to commit elements
-- [ ] **Task 3.2** - Implement setupClickEvents function
-- [ ] **Task 3.3** - Integrate bindFunctions into draw()
+- [x] **Task 3.1** - Add data-commit-id attribute to commit elements
+- [x] **Task 3.2** - Implement setupClickEvents function
+- [x] **Task 3.3** - Integrate bindFunctions into draw()
 
 ## Phase 4: Styles
 
