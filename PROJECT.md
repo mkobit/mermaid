@@ -1,6 +1,7 @@
 # GitGraph Links Feature - Implementation Checklist
 
 ## Overview
+
 Implementing clickable link support for gitGraph diagrams (mermaid-js/mermaid#5599)
 
 **Approach:** Click statement syntax only (matching flowchart pattern)
@@ -25,7 +26,7 @@ gitGraph
 
 ## Phase 1: Foundation
 
-- [ ] **Task 1.1** - Add GitGraphLink type definition
+- [x] **Task 1.1** - Add GitGraphLink type definition
 - [ ] **Task 1.2** - Add link state management (setLink, getLink, getLinks, clear)
 
 ## Phase 2: Parser
@@ -58,6 +59,7 @@ gitGraph
 ## Acceptance Criteria
 
 ### Functional
+
 - [ ] `click "id" "url"` works
 - [ ] `click "id" "url" "tooltip"` works
 - [ ] `click "id" "url" _blank` works
@@ -66,6 +68,7 @@ gitGraph
 - [ ] Works with all orientations (LR, TB, BT)
 
 ### UI/UX
+
 - [ ] Cursor pointer on linked commits
 - [ ] Hover visual feedback
 - [ ] Tooltip displays on hover
@@ -73,12 +76,14 @@ gitGraph
 - [ ] Focus indicator visible
 
 ### Security
+
 - [ ] javascript: URLs blocked
 - [ ] data: URLs blocked
 - [ ] Sandbox mode uses postMessage
-- [ ] _blank uses noopener,noreferrer
+- [ ] \_blank uses noopener,noreferrer
 
 ### Tests
+
 - [ ] Unit tests pass
 - [ ] Parser tests pass
 - [ ] Cypress tests pass
