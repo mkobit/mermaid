@@ -31,7 +31,7 @@ gitGraph
 
 ## Phase 2: Parser
 
-- [ ] **Task 2.1** - Add lexer tokens (CLICK, LINK_TARGET)
+- [x] **Task 2.1** - Add lexer tokens (CLICK, LINK_TARGET)
 - [ ] **Task 2.2** - Add clickStatement grammar rule
 
 ## Phase 3: Renderer
