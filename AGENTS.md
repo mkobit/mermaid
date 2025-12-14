@@ -11,14 +11,6 @@ We are working on a set of tasks to implement links for the gitGraph diagram mod
 CONTRIBUTING.md should be considered the general truth to building and testing.
 It has a lot of content so be prudent in how you read it so you don't overwhelm the context window.
 
-### Verification Requirement
-
-**IMPORTANT:** There is no CI environment active in this repository. You **must** manually run the following commands before submitting any changes:
-
-- `pnpm build`
-- `pnpm test` (or relevant subset)
-- `pnpm lint`
-
 ### Commands
 
 | Command                         | Purpose                  |
