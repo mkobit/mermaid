@@ -1,6 +1,7 @@
 # GitGraph Links Feature - Implementation Tasks
 
 ## Overview
+
 Implementing clickable link support for gitGraph diagrams (mermaid-js/mermaid#5599)
 
 ---
@@ -8,11 +9,13 @@ Implementing clickable link support for gitGraph diagrams (mermaid-js/mermaid#55
 ## Phase 1: Foundation
 
 ### Task 1.1: Add Type Definitions
+
 **File:** `packages/mermaid/src/diagrams/git/gitGraphTypes.ts`
 
 **Objective:** Add `GitGraphLink` interface
 
 **Implementation:**
+
 ```typescript
 export interface GitGraphLink {
   id: string;
@@ -23,17 +26,20 @@ export interface GitGraphLink {
 ```
 
 **Acceptance:**
-- [ ] Interface exported from gitGraphTypes.ts
-- [ ] TypeScript compiles without errors
+
+- [x] Interface exported from gitGraphTypes.ts
+- [x] TypeScript compiles without errors
 
 ---
 
 ### Task 1.2: Add Link State Management to AST
+
 **File:** `packages/mermaid/src/diagrams/git/gitGraphAst.ts`
 
 **Objective:** Add link storage and management functions
 
 **Implementation:**
+
 1. Add module-level `links: Map<string, GitGraphLink>`
 2. Implement `setLink(id, link, tooltip?, target?)`
 3. Implement `getLinks()` returning Map copy
@@ -42,14 +48,16 @@ export interface GitGraphLink {
 6. Export all three functions in default export object
 
 **Acceptance:**
-- [ ] `setLink` stores link with default target `_self`
-- [ ] `getLinks` returns defensive copy
-- [ ] `clear()` resets links
-- [ ] Functions exported in default object
+
+- [x] `setLink` stores link with default target `_self`
+- [x] `getLinks` returns defensive copy
+- [x] `clear()` resets links
+- [x] Functions exported in default object
 
 ---
 
 ### Task 1.3: Extend Commit Function for Inline Links
+
 **File:** `packages/mermaid/src/diagrams/git/gitGraphAst.ts`
 
 **Objective:** Handle inline link options in commit()
@@ -58,6 +66,7 @@ export interface GitGraphLink {
 Modify `commit(options)` to call `setLink()` when `options.link` exists, passing `options.tooltip` and `options.linkTarget`
 
 **Acceptance:**
+
 - [ ] `commit({ id: "x", link: "url" })` creates link entry
 - [ ] tooltip and linkTarget passed through when present
 
@@ -66,11 +75,13 @@ Modify `commit(options)` to call `setLink()` when `options.link` exists, passing
 ## Phase 2: Parser
 
 ### Task 2.1: Add Lexer Tokens
+
 **File:** `packages/mermaid/src/diagrams/git/parser/gitGraph.jison`
 
 **Objective:** Add lexer rules for link-related keywords
 
 **Implementation (in %lex section):**
+
 ```jison
 "link"          return 'LINK';
 "click"         return 'CLICK';
@@ -83,18 +94,21 @@ Modify `commit(options)` to call `setLink()` when `options.link` exists, passing
 ```
 
 **Acceptance:**
+
 - [ ] Tokens recognized by lexer
 - [ ] No conflicts with existing tokens
 
 ---
 
 ### Task 2.2: Extend commitOpt Grammar Rule
+
 **File:** `packages/mermaid/src/diagrams/git/parser/gitGraph.jison`
 
 **Objective:** Add link/tooltip/target options to commitOpt
 
 **Implementation:**
 Add to `commitOpt` rule:
+
 ```jison
 | LINK COLON STR        { $$ = { link: $3 } }
 | TOOLTIP COLON STR     { $$ = { tooltip: $3 } }
@@ -102,6 +116,7 @@ Add to `commitOpt` rule:
 ```
 
 **Acceptance:**
+
 - [ ] `commit id: "x" link: "url"` parses
 - [ ] `commit id: "x" link: "url" tooltip: "tip" target: "_blank"` parses
 - [ ] Options merge correctly with existing commitOpt handling
@@ -109,11 +124,13 @@ Add to `commitOpt` rule:
 ---
 
 ### Task 2.3: Add clickStatement Grammar Rule
+
 **File:** `packages/mermaid/src/diagrams/git/parser/gitGraph.jison`
 
 **Objective:** Add click statement syntax
 
 **Implementation:**
+
 ```jison
 clickStatement
     : CLICK STR STR                     { yy.setLink($2, $3) }
@@ -126,6 +143,7 @@ clickStatement
 Add `clickStatement` to `statement` rule.
 
 **Acceptance:**
+
 - [ ] `click "id" "url"` parses
 - [ ] `click "id" "url" "tooltip"` parses
 - [ ] `click "id" "url" _blank` parses
@@ -136,28 +154,33 @@ Add `clickStatement` to `statement` rule.
 ## Phase 3: Renderer
 
 ### Task 3.1: Add data-commit-id Attribute
+
 **File:** `packages/mermaid/src/diagrams/git/gitGraphRenderer.ts`
 
 **Objective:** Add data attribute to commit elements for selection
 
 **Implementation:**
 Find commit group creation and add:
+
 ```typescript
 commitGroup.attr('data-commit-id', commit.id);
 ```
 
 **Acceptance:**
+
 - [ ] Rendered commits have `data-commit-id` attribute
 - [ ] Attribute value matches commit id
 
 ---
 
 ### Task 3.2: Implement Click Event Setup Function
+
 **File:** `packages/mermaid/src/diagrams/git/gitGraphRenderer.ts`
 
 **Objective:** Create `setupClickEvents()` function
 
 **Implementation:**
+
 1. Import `sanitizeUrl` from utils
 2. Create function that:
    - Gets links from db
@@ -168,6 +191,7 @@ commitGroup.attr('data-commit-id', commit.id);
    - Use `noopener,noreferrer` for `_blank`
 
 **Acceptance:**
+
 - [ ] Returns undefined when no links
 - [ ] Returns bind function when links exist
 - [ ] Sanitizes URLs before use
@@ -177,12 +201,14 @@ commitGroup.attr('data-commit-id', commit.id);
 ---
 
 ### Task 3.3: Integrate Click Events into Draw Function
+
 **File:** `packages/mermaid/src/diagrams/git/gitGraphRenderer.ts`
 
 **Objective:** Return bindFunctions from draw()
 
 **Implementation:**
 Call `setupClickEvents()` and include result in return object:
+
 ```typescript
 return {
   svg: svg.node(),
@@ -191,6 +217,7 @@ return {
 ```
 
 **Acceptance:**
+
 - [ ] draw() returns object with bindFunctions
 - [ ] Existing rendering unaffected
 
@@ -199,12 +226,14 @@ return {
 ## Phase 4: Styles
 
 ### Task 4.1: Add Clickable Commit Styles
+
 **File:** `packages/mermaid/src/diagrams/git/styles.ts`
 
 **Objective:** Add hover/focus styles for linked commits
 
 **Implementation:**
 Add to getStyles():
+
 ```css
 .commit.clickable { cursor: pointer; }
 .commit.clickable:hover .commit-label-bkg,
@@ -215,6 +244,7 @@ Add to getStyles():
 ```
 
 **Acceptance:**
+
 - [ ] Cursor changes on hover
 - [ ] Visual feedback on hover/focus
 - [ ] Focus indicator visible
@@ -224,13 +254,15 @@ Add to getStyles():
 ## Phase 5: Testing
 
 ### Task 5.1: Unit Tests - Link State Management
+
 **File:** `packages/mermaid/src/diagrams/git/__tests__/gitGraphAst.spec.ts`
 
 **Objective:** Test setLink, getLink, getLinks, clear
 
 **Tests:**
+
 - setLink stores basic link
-- Default target is _self
+- Default target is \_self
 - Tooltip stored correctly
 - Target stored correctly
 - Overwrite existing link
@@ -238,17 +270,20 @@ Add to getStyles():
 - commit with inline link creates entry
 
 **Acceptance:**
-- [ ] All tests pass
-- [ ] Edge cases covered
+
+- [x] All tests pass
+- [x] Edge cases covered
 
 ---
 
 ### Task 5.2: Parser Tests - Link Syntax
+
 **File:** `packages/mermaid/src/diagrams/git/__tests__/gitGraphParser.spec.ts`
 
 **Objective:** Test all link syntax variations
 
 **Tests:**
+
 - Inline link parses
 - Inline link + tooltip parses
 - Inline link + target parses
@@ -259,17 +294,20 @@ Add to getStyles():
 - click + tooltip + target parses
 
 **Acceptance:**
+
 - [ ] All syntax variations tested
 - [ ] Tests pass
 
 ---
 
 ### Task 5.3: Visual Regression Tests
+
 **File:** `cypress/integration/rendering/gitGraph.spec.js`
 
 **Objective:** Add snapshot tests for linked commits
 
 **Tests:**
+
 - Commit with inline link renders
 - Commit with click statement renders
 - Branches with links render
@@ -277,6 +315,7 @@ Add to getStyles():
 - Special characters in commit id handled
 
 **Acceptance:**
+
 - [ ] Snapshots generated
 - [ ] Tests pass in CI
 
@@ -285,11 +324,13 @@ Add to getStyles():
 ## Phase 6: Documentation
 
 ### Task 6.1: Update gitgraph.md Documentation
+
 **File:** `docs/syntax/gitgraph.md`
 
 **Objective:** Document link syntax
 
 **Content:**
+
 - Interactive Links section
 - Inline syntax examples
 - Click statement syntax examples
@@ -297,6 +338,7 @@ Add to getStyles():
 - Note about security (sandbox mode)
 
 **Acceptance:**
+
 - [ ] Examples render correctly
 - [ ] All syntax variations documented
 
@@ -305,6 +347,7 @@ Add to getStyles():
 ## Completion Checklist
 
 ### Functional
+
 - [ ] Inline `link:` works
 - [ ] Inline `tooltip:` works
 - [ ] Inline `target:` works
@@ -316,6 +359,7 @@ Add to getStyles():
 - [ ] Click statement can override inline
 
 ### UI/UX
+
 - [ ] Cursor pointer on linked commits
 - [ ] Hover feedback
 - [ ] Tooltip displays
@@ -323,17 +367,20 @@ Add to getStyles():
 - [ ] Focus indicator
 
 ### Security
+
 - [ ] javascript: blocked
 - [ ] data: blocked
 - [ ] Sandbox uses postMessage
-- [ ] _blank uses noopener,noreferrer
+- [ ] \_blank uses noopener,noreferrer
 
 ### Tests
+
 - [ ] Unit tests pass
 - [ ] Parser tests pass
 - [ ] Cypress tests pass
 - [ ] CI green
 
 ### Documentation
+
 - [ ] Syntax documented
 - [ ] Examples work
