@@ -11,10 +11,13 @@ We are working on a set of tasks to implement links for the gitGraph diagram mod
 CONTRIBUTING.md should be considered the general truth to building and testing.
 It has a lot of content so be prudent in how you read it so you don't overwhelm the context window.
 
+**IMPORTANT:** Always run the bootstrap command first to ensure dependencies are installed and the environment is ready.
+
 ### Commands
 
 | Command                         | Purpose                  |
 | ------------------------------- | ------------------------ |
+| `pnpm install`                  | Install dependencies     |
 | `pnpm build`                    | Build all packages       |
 | `pnpm test`                     | Run unit tests           |
 | `pnpm test -- --grep "pattern"` | Run specific tests       |
