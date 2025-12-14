@@ -27,12 +27,12 @@ gitGraph
 ## Phase 1: Foundation
 
 - [x] **Task 1.1** - Add GitGraphLink type definition
-- [ ] **Task 1.2** - Add link state management (setLink, getLink, getLinks, clear)
+- [x] **Task 1.2** - Add link state management (setLink, getLink, getLinks, clear)
 
 ## Phase 2: Parser
 
 - [x] **Task 2.1** - Add lexer tokens (CLICK, LINK_TARGET)
-- [ ] **Task 2.2** - Add clickStatement grammar rule
+- [x] **Task 2.2** - Add clickStatement grammar rule
 
 ## Phase 3: Renderer
 
