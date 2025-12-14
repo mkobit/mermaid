@@ -14,6 +14,9 @@ export interface CommitDB {
   id: string;
   type: number;
   tags?: string[];
+  link?: string;
+  tooltip?: string;
+  linkTarget?: '_self' | '_blank' | '_parent' | '_top';
 }
 
 export interface BranchDB {

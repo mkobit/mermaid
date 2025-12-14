@@ -67,8 +67,8 @@ Modify `commit(options)` to call `setLink()` when `options.link` exists, passing
 
 **Acceptance:**
 
-- [ ] `commit({ id: "x", link: "url" })` creates link entry
-- [ ] tooltip and linkTarget passed through when present
+- [x] `commit({ id: "x", link: "url" })` creates link entry
+- [x] tooltip and linkTarget passed through when present
 
 ---
 

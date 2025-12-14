@@ -134,6 +134,10 @@ export const commit = function (commitDB: CommitDB) {
   state.records.commits.set(newCommit.id, newCommit);
   state.records.branches.set(state.records.currBranch, newCommit.id);
   log.debug('in pushCommit ' + newCommit.id);
+
+  if (commitDB.link) {
+    setLink(newCommit.id, commitDB.link, commitDB.tooltip, commitDB.linkTarget);
+  }
 };
 
 export const branch = function (branchDB: BranchDB) {

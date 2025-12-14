@@ -43,5 +43,22 @@ describe('gitGraphAst', () => {
       db.clear();
       expect(db.getLinks().size).toBe(0);
     });
+
+    it('should create a link when commit has link options', () => {
+      db.commit({
+        id: 'commit_with_link',
+        msg: 'commit message',
+        type: db.commitType.NORMAL,
+        link: 'https://example.com/commit',
+        tooltip: 'Commit Tooltip',
+        linkTarget: '_blank',
+      });
+
+      const link = db.getLink('commit_with_link');
+      expect(link).toBeDefined();
+      expect(link?.link).toBe('https://example.com/commit');
+      expect(link?.tooltip).toBe('Commit Tooltip');
+      expect(link?.target).toBe('_blank');
+    });
   });
 });
