@@ -2,7 +2,7 @@
 
 We are working on a set of tasks to implement links for the gitGraph diagram module.
 **GitHub Issue:** https://github.com/mermaid-js/mermaid/issues/5599
-**Goal:** Add `click` statement support to gitGraph for commits, branches, and tags - mirroring existing flowchart link functionality.
+**Goal:** Add `click` statement support to gitGraph for commits - mirroring existing flowchart link functionality.
 
 ## **Implementation Plan:** See [PROJECT.md](./PROJECT.md)
 
@@ -97,13 +97,11 @@ The final syntax mirrors flowchart exactly:
 
 ```mermaid
 gitGraph
-    commit id: "abc"
-    branch develop
-    commit tag: "v1.0"
+    commit id: "c1"
+    commit id: "c2"
 
-    click abc "https://github.com/commit/abc"
-    click develop "https://github.com/tree/develop" "Dev branch"
-    click v1.0 "https://github.com/releases/v1.0" "Release" _blank
+    click "c1" "https://example.com"
+    click "c2" "https://example.com" "Tooltip" _blank
 ```
 
 Variations:
