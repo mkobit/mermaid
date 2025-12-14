@@ -89,8 +89,9 @@ Follow conventional commits:
 
 ```feat(gitGraph): <description>
 <body explaining what and why>
-Link to GH issue
 ```
+
+**IMPORTANT:** Do not link to the GitHub issue in the commit message or pull request description. This causes excessive noise on the original issue.
 
 ---
 
@@ -167,3 +168,4 @@ if (vertex.link) {
 - Match the code style you see in surrounding code
 - When in doubt, look at how flowchart does it
 - Commit after each completed task
+- **DO NOT** link to the GitHub issue in commit messages or PR descriptions to avoid noise.
