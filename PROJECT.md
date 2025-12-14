@@ -27,8 +27,8 @@ export interface GitGraphLink {
 
 **Acceptance:**
 
-- [x] Interface exported from gitGraphTypes.ts
-- [x] TypeScript compiles without errors
+- [ ] Interface exported from gitGraphTypes.ts
+- [ ] TypeScript compiles without errors
 
 ---
 
@@ -49,10 +49,10 @@ export interface GitGraphLink {
 
 **Acceptance:**
 
-- [x] `setLink` stores link with default target `_self`
-- [x] `getLinks` returns defensive copy
-- [x] `clear()` resets links
-- [x] Functions exported in default object
+- [ ] `setLink` stores link with default target `_self`
+- [ ] `getLinks` returns defensive copy
+- [ ] `clear()` resets links
+- [ ] Functions exported in default object
 
 ---
 
@@ -271,8 +271,8 @@ Add to getStyles():
 
 **Acceptance:**
 
-- [x] All tests pass
-- [x] Edge cases covered
+- [ ] All tests pass
+- [ ] Edge cases covered
 
 ---
 
