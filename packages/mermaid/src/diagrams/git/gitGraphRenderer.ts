@@ -936,7 +936,7 @@ const setupClickEvents = (
       // Add tooltip if provided
       if (linkData.tooltip) {
         elements.each(function () {
-          select(this).append('title').text(linkData.tooltip);
+          select(this).append('title').text(linkData.tooltip!);
         });
       }
       // Click handler
