@@ -46,9 +46,9 @@ gitGraph
 
 ## Phase 5: Testing
 
-- [ ] **Task 5.1** - Unit tests for link state management
-- [ ] **Task 5.2** - Parser tests for click statement syntax
-- [ ] **Task 5.3** - Cypress visual regression tests
+- [x] Task 5.1 - Unit tests for link state management
+- [x] Task 5.2 - Parser tests for click statement syntax
+- [x] Task 5.3 - Cypress visual regression tests
 
 ## Phase 6: Documentation
 
