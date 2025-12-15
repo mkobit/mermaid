@@ -42,7 +42,7 @@ gitGraph
 
 ## Phase 4: Styles
 
-- [ ] **Task 4.1** - Add clickable commit CSS styles
+- [x] **Task 4.1** - Add clickable commit CSS styles
 
 ## Phase 5: Testing
 
