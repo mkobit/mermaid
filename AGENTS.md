@@ -91,7 +91,8 @@ Follow conventional commits:
 <body explaining what and why>
 ```
 
-**IMPORTANT:** Do not link to the GitHub issue in the commit message or pull request description. This causes excessive noise on the original issue.
+**IMPORTANT:** Do not link to the GitHub issue in the commit message or pull request description.
+This causes excessive noise on the original issue.
 
 ---
 
