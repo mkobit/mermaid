@@ -265,6 +265,25 @@ if (import.meta.vitest) {
       );
     });
 
+    it('should handle click commit statement', () => {
+      const click = {
+        $type: 'Click',
+        id: '1',
+        href: 'http://example.com',
+        tooltip: 'tooltip',
+        target: '_blank',
+        type: 'commit',
+      };
+      parseStatement(click, mockDB);
+      expect(mockDB.setLink).toHaveBeenCalledWith(
+        '1',
+        'http://example.com',
+        'tooltip',
+        '_blank',
+        'commit'
+      );
+    });
+
     it('should handle click branch statement', () => {
       const click = {
         $type: 'Click',
