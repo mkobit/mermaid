@@ -295,13 +295,12 @@ describe('GitGraph Click Events', () => {
       await parser.parse(diagram);
       expect(db.getLink('c1')?.target).toBe('_self');
     });
-
   });
 
   describe('Link overwriting', () => {
     it('should allow overwriting existing links', () => {
-      db.setLink('c1', 'https://old-url.com', undefined, undefined, 'commit');
-      db.setLink('c1', 'https://new-url.com', undefined, undefined, 'commit');
+      db.setLink('c1', 'https://old-url.com', 'commit');
+      db.setLink('c1', 'https://new-url.com', 'commit');
 
       expect(db.getLink('c1')?.link).toBe('https://new-url.com');
     });

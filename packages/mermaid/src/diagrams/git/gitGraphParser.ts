@@ -93,7 +93,7 @@ const parseCherryPicking = (cherryPicking: CherryPickingAst): CherryPickDB => {
 };
 
 const parseClick = (click: ClickAst, db: GitGraphDBParseProvider) => {
-  db.setLink(click.id, click.href, click.tooltip, click.target, click.type);
+  db.setLink(click.id, click.href, click.type, click.tooltip, click.target);
 };
 
 export const parser: ParserDefinition = {
@@ -260,14 +260,14 @@ if (import.meta.vitest) {
         target: '_blank',
         type: type,
       };
-      // @ts-ignore
+      // @ts-ignore: This is a partial mock object for testing
       parseStatement(click, mockDB);
       expect(mockDB.setLink).toHaveBeenCalledWith(
         'test-id',
         'http://example.com',
+        expectedType,
         'tooltip',
-        '_blank',
-        expectedType
+        '_blank'
       );
     });
   });

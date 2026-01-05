@@ -132,9 +132,9 @@ export interface GitGraphDB extends DiagramDBBase<GitGraphDiagramConfig> {
   setLink: (
     id: string,
     link: string,
+    type: 'commit' | 'branch' | 'tag',
     tooltip?: string,
-    target?: '_self' | '_blank' | '_parent' | '_top',
-    type: 'commit' | 'branch' | 'tag'
+    target?: '_self' | '_blank' | '_parent' | '_top'
   ) => void;
   getLink: (id: string) => GitGraphLink | undefined;
   getLinks: () => Map<string, GitGraphLink>;
@@ -151,9 +151,9 @@ export interface GitGraphDBParseProvider extends Partial<GitGraphDB> {
   setLink: (
     id: string,
     link: string,
+    type: 'commit' | 'branch' | 'tag',
     tooltip?: string,
-    target?: '_self' | '_blank' | '_parent' | '_top',
-    type: 'commit' | 'branch' | 'tag'
+    target?: '_self' | '_blank' | '_parent' | '_top'
   ) => void;
 }
 
