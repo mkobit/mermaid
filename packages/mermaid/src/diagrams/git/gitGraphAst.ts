@@ -503,14 +503,14 @@ export const setLink = (
   link: string,
   tooltip?: string,
   target?: '_self' | '_blank' | '_parent' | '_top',
-  type?: 'commit' | 'branch' | 'tag'
+  type: 'commit' | 'branch' | 'tag'
 ): void => {
   state.records.links.set(id, {
     id,
     link,
     tooltip,
     target: target || '_self',
-    type: type || 'commit',
+    type: type,
   });
 };
 

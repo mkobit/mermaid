@@ -248,7 +248,6 @@ if (import.meta.vitest) {
     });
 
     it.each([
-      { type: undefined, expectedType: undefined },
       { type: 'commit', expectedType: 'commit' },
       { type: 'branch', expectedType: 'branch' },
       { type: 'tag', expectedType: 'tag' },
@@ -259,8 +258,9 @@ if (import.meta.vitest) {
         href: 'http://example.com',
         tooltip: 'tooltip',
         target: '_blank',
-        ...(type && { type }),
+        type: type,
       };
+      // @ts-ignore
       parseStatement(click, mockDB);
       expect(mockDB.setLink).toHaveBeenCalledWith(
         'test-id',
